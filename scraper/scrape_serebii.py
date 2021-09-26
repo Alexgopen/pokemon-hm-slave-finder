@@ -14,16 +14,16 @@ attackdex_paths = [
 
 field_moves = [
     # Gen 1
-    ["cut", "surf", "fly", "strength", "flash"],
+    ["cut", "fly", "surf", "strength", "flash", "dig", "super fang", "confuse ray", "teleport", "spore", "sleep powder", "sing", "glare", "lovely kiss", "hypnosis", "stun spore", "thunder wave"],
     
     # Gen 2
-    ["cut", "fly", "surf", "strength", "flash", "whirlpool", "waterfall"],
+    ["cut", "fly", "surf", "strength", "flash", "dig", "super fang", "mean look", "whirlpool", "waterfall", "headbutt", "false swipe", "confuse ray", "swagger", "glare", "thief", "teleport", "stun spore", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis"],
 
     # Gen 3
-    ["cut", "fly", "surf", "strength", "flash", "rock smash", "waterfall", "dive"],
+    ["cut", "fly", "surf", "strength", "flash", "endeavor", "super fang", "role play", "mean look", "skill swap", "dig", "rock smash", "waterfall", "dive", "false swipe", "confuse ray", "flatter", "glare", "swagger", "thief", "teleport", "stun spore", "yawn", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
     
     # Gen 4
-    ["cut", "fly", "surf", "strength", "defog", "rock smash", "waterfall", "rock climb", "whirlpool"],
+    ["cut", "fly", "surf", "strength", "flash", "role play", "endeavor", "super fang", "mean look", "dig", "skill swap", "defog", "rock smash", "waterfall", "rock climb", "whirlpool", "headbutt", "glare", "false swipe", "confuse ray", "flatter", "stun spore", "thunder wave", "swagger", "thief", "teleport", "yawn", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
 ]
 
 def scrape_attackdex(gen):
@@ -45,28 +45,28 @@ def scrape_attackdex(gen):
         save_path = "{}/{}.cshtml".format(save_directory, move)
 
         if os.path.isfile(save_path):
-            print("Skipping {} because we already have it!".format(move_url))
+            print("Skipping {} because we already have it!".format(move), flush=True)
             continue
 
-        print("Fetching {}...".format(move_url))
+        print("Fetching {}...".format(move_url), flush=True)
         r = requests.get(move_url)
 
         if r.status_code != 200:
-            print("{} returned a {}!".format(move_url, r.status_code))
+            print("{} returned a {}!".format(move_url, r.status_code), flush=True)
             time.sleep(2)
             continue
 
         with open(save_path, "w+") as file:
             file.write(r.text)
 
-        print("{} saved".format(save_path))
+        print("{} saved".format(save_path), flush=True)
         time.sleep(2)
 
 def main():
     for g in range(1, 4+1):
-        print("Fetching gen {} field moves".format(g))
+        print("Fetching gen {} field moves".format(g), flush=True)
         scrape_attackdex(g)
-        print("")
+        print("", flush=True)
 
 if __name__ == '__main__':
     main()

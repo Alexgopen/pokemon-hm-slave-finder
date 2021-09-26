@@ -1,18 +1,18 @@
 <template>
   <section class="container">
-    <h1>Pokemon HM Slave Finder Thing</h1>
+    <h1>Pokemon Move Finder Thing</h1>
 
     <div class="block">
       <h2>Which generation are you playing?</h2>
       <select v-model="generationSelection" @change="generationChanged($event)">
-        <option v-for="g in generations" v-bind:value="g.value">
+        <option v-for="g in generations" v-bind:value="g">
           {{g.text}}
         </option>
       </select>
     </div>
 
     <div v-if="generationSelection" class="block">
-      <h2>Which HMs do you need the Pokemon to know?</h2>
+      <h2>Which moves do you need the Pokemon to know?</h2>
       <ul>
         <li v-for="hm in hms">
           <input type="checkbox" :id="hm.name" :value="hm.name" v-model="hmSelection" @change="hmChanged">
@@ -22,9 +22,10 @@
     </div>
 
     <div v-if="hmSelection.length > 0" class="block">
-      <h2>These Pokemon can learn those HMs</h2>
+      <h2 v-if="pokemon.length > 0">These Pokemon can learn those moves:</h2>
+      <h2 v-else>No Pokemon can learn those moves.</h2>
       <div class="flex-container">
-        <pokemon v-for="p in pokemon" :pokemon="p" :generation="generationSelection"/>
+        <pokemon v-for="p in pokemon" :pokemon="p" :generation="generationSelection.dir" :serebiiGenerationSuffix="generationSelection.suffix"/>
       </div>
     </div>
   </section>
@@ -46,14 +47,14 @@ export default {
       checkedNames: [],
       pokemon: [],
       generations: [
-        {text: "Red/Blue/Yellow", value: "gen1"},
-        {text: "Gold/Silver/Crystal", value: "gen2"},
-        {text: "Ruby/Sapphire/Emerald/FireRed/LeafGreen", value: "gen3"},
-        {text: "Diamond/Pearl/Platinum/SoulSilver/HeartGold", value: "gen4"}
+        {text: "Red/Blue/Yellow", dir: "gen1", suffix: ""},
+        {text: "Gold/Silver/Crystal", dir: "gen2", suffix: "-gs"},
+        {text: "Ruby/Sapphire/Emerald/FireRed/LeafGreen", dir: "gen3", suffix: "-rs"},
+        {text: "Diamond/Pearl/Platinum/SoulSilver/HeartGold", dir: "gen4", suffix: "-dp"}
       ],
-      hms: [],
       generationSelection: null,
-      hmSelection: []
+      hms: [],
+      hmSelection: [],
     }
   },
 
@@ -74,7 +75,7 @@ export default {
     updateHmList: function(event) {
       this.hms.splice(0, this.hms.length);
 
-      var k = Object.keys(json[this.generationSelection])
+      var k = Object.keys(json[this.generationSelection.dir])
 
       k.forEach((e) => {
         this.hms.push({name: e});
@@ -94,10 +95,10 @@ export default {
 
       this.hmSelection.forEach((hm) => {
         if (hmPokemon.length == 0) {
-          hmPokemon = json[this.generationSelection][hm];
+          hmPokemon = json[this.generationSelection.dir][hm];
         }
         else {
-          hmPokemon = _.intersectionBy(hmPokemon, json[this.generationSelection][hm], 'id');
+          hmPokemon = _.intersectionBy(hmPokemon, json[this.generationSelection.dir][hm], 'id');
         }
       });
 
@@ -131,5 +132,11 @@ ul {
 
 h2 {
   margin-bottom: 5%;
+}
+
+html {
+    overflow: -moz-scrollbars-vertical; 
+    overflow-y: scroll;
+    height: 200%
 }
 </style>

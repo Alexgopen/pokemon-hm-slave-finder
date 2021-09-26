@@ -17,7 +17,7 @@ pokemon_count = [
 ]
 
 def get_pokemon_art(gen):
-    print("Getting img for gen {}".format(gen))
+    print("Getting img for gen {}".format(gen), flush=True)
     gen -= 1
 
     save_directory = "cache/img/gen{}".format(gen+1)
@@ -30,13 +30,13 @@ def get_pokemon_art(gen):
         save_path = "{}/{}.png".format(save_directory, filename)
 
         if os.path.isfile(save_path):
-            print("Skipping {} as it already exists".format(filename))
+            print("Skipping sprite {} because we already have it!".format(filename), flush=True)
             continue
 
         r = requests.get(img_url)
 
         if r.status_code != 200:
-            print("{} returned a {}!".format(img_url, r.status_code))
+            print("{} returned a {}!".format(img_url, r.status_code), flush=True)
             time.sleep(30)
             continue
 
@@ -44,7 +44,7 @@ def get_pokemon_art(gen):
             for chunk in r:
                 file.write(chunk)
 
-        print("{} saved".format(save_path))
+        print("{} saved".format(save_path), flush=True)
         time.sleep(1)
 
 if __name__ == '__main__':
