@@ -1,6 +1,7 @@
 import os
 import json
 from bs4 import BeautifulSoup
+from scrape_serebii import hms
 
 allPokemon = []
 
@@ -75,19 +76,26 @@ def get_hm_pokemon_for_gen(gen):
 
     print("Gen {}".format(gen), flush=True)
 
-    output_dir = "cache/hm_pokemon/gen{}".format(gen)
     input_dir = "cache/raw_html/gen{}".format(gen)
 
     generation = {}
+    hmsJson = {}
+    tmsJson = {}
 
     for f in os.listdir(input_dir):
         move = os.path.splitext(f)[0]
+        
+        despaced_hms = [hm.replace(" ", "") for hm in hms[gen-1]]
+        
+        if move in despaced_hms:
+            with open("{}/{}".format(input_dir, f)) as file:
+                hmsJson[move] = get_pokemon_from_file(file, gen)
+        else:
+            with open("{}/{}".format(input_dir, f)) as file:
+                tmsJson[move] = get_pokemon_from_file(file, gen)
 
-        pokemon = []
-
-        with open("{}/{}".format(input_dir, f)) as file:
-            generation[move] = get_pokemon_from_file(file, gen)
-
+    generation["hms"] = hmsJson        
+    generation["tms"] = tmsJson
     return generation
 
 if __name__ == '__main__':

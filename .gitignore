@@ -1,4 +1,5 @@
 scraper/cache/*
+scraper/__pycache__
 
 site/dist
 site/node_modules
