@@ -69,7 +69,8 @@ export default {
         {text: "Red/Blue/Yellow", gen: "gen1", suffix: ""},
         {text: "Gold/Silver/Crystal", gen: "gen2", suffix: "-gs"},
         {text: "Ruby/Sapphire/Emerald/FireRed/LeafGreen", gen: "gen3", suffix: "-rs"},
-        {text: "Diamond/Pearl/Platinum/SoulSilver/HeartGold", gen: "gen4", suffix: "-dp"}
+        {text: "Diamond/Pearl/Platinum/SoulSilver/HeartGold", gen: "gen4", suffix: "-dp"},
+        {text: "Black/White", gen: "gen5", suffix: "-bw"}
       ],
       generationSelection: null,
       hms: [],
@@ -190,7 +191,7 @@ h2 {
 
 html {
     overflow-y: scroll;
-    height: 200%;
+    height: 300%;
 }
 
 table {

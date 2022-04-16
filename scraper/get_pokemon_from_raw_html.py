@@ -22,6 +22,10 @@ def get_pokemon_from_file(file, gen):
         nameTd = 2
         dexTabSkip = 3
         rowIndex = 1
+
+    if gen == 5:
+        tableSkip = 2
+
     dextables = soup.select(".dextable")
 
     # Skip the first one because it's just the move description
@@ -32,6 +36,9 @@ def get_pokemon_from_file(file, gen):
                 name = name.replace("Yellow Only", "")
                 
                 id = row.select("td")[0].text.replace("#", "")
+
+                if not id.isdigit():
+                    pass
 
                 p = {
                     "name": name,
@@ -101,7 +108,7 @@ def get_hm_pokemon_for_gen(gen):
 if __name__ == '__main__':
     data = {}
 
-    for gen in range(1, 4+1):
+    for gen in range(1, 5+1):
         genPokemon = get_hm_pokemon_for_gen(gen)
 
         data["gen{}".format(gen)] = genPokemon

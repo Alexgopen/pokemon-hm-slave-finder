@@ -9,7 +9,8 @@ attackdex_paths = [
     "attackdex-rby",
     "attackdex-gs",
     "attackdex", # !?
-    "attackdex-dp"
+    "attackdex-dp",
+	"attackdex-bw"
 ]
 
 hms = [
@@ -24,20 +25,27 @@ hms = [
     
     # Gen 4
     ["cut", "fly", "surf", "strength", "defog", "rock smash", "waterfall", "rock climb", "whirlpool"],
+	
+	# Gen 5
+    ["cut", "fly", "surf", "strength", "waterfall", "dive"],
 ]
 
 other_moves = [
     # Gen 1
-    ["dig", "teleport", "super fang", "confuse ray", "spore", "sleep powder", "sing", "glare", "lovely kiss", "hypnosis", "stun spore", "thunder wave"],
+    ["double team", "amnesia", "swords dance", "horn drill", "guillotine", "fissure", "dragon rage", "psywave", "seismic toss", "night shade", "dig", "teleport", "toxic", "leech seed", "super fang", "confuse ray", "spore", "sleep powder", "sing", "glare", "lovely kiss", "hypnosis", "stun spore", "thunder wave"],
     
     # Gen 2
-    ["dig", "teleport", "thief", "false swipe", "headbutt", "super fang", "mean look", "confuse ray", "swagger", "glare", "stun spore", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis"],
+    ["rapid spin", "spikes", "double team", "amnesia", "swords dance", "belly drum", "safeguard", "baton pass", "sacred fire", "horn drill", "guillotine", "fissure", "dragon rage", "perish song", "nightmare", "heal bell", "psywave", "mind reader", "lock-on", "seismic toss", "night shade", "dig", "teleport", "toxic", "leech seed", "thief", "false swipe", "headbutt", "super fang", "mean look", "confuse ray", "swagger", "glare", "stun spore", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis"],
 
     # Gen 3
-    ["dig", "teleport", "thief", "false swipe", "role play", "endeavor", "super fang", "mean look", "skill swap", "confuse ray", "flatter", "glare", "swagger", "stun spore", "yawn", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
+    ["fake out", "cosmic power", "amnesia", "iron defense", "rapid spin", "spikes", "calm mind", "bulk up", "dragon dance", "double team", "wish", "covet", "amnesia", "swords dance", "belly drum", "safeguard", "baton pass", "block", "sacred fire", "will-o-wisp", "horn drill", "guillotine", "fissure", "dragon rage", "perish song", "nightmare", "heal bell", "aromatherapy", "sheer cold", "psywave", "mind reader", "lock-on", "seismic toss", "night shade", "dig", "teleport", "toxic", "leech seed", "thief", "false swipe", "role play", "endeavor", "super fang", "mean look", "skill swap", "confuse ray", "flatter", "glare", "swagger", "stun spore", "yawn", "thunder wave", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
     
     # Gen 4
-    ["dig", "teleport", "thief", "false swipe", "role play", "flash", "endeavor", "super fang", "mean look", "skill swap", "headbutt", "glare", "confuse ray", "flatter", "stun spore", "thunder wave", "swagger", "yawn", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
+    ["barrier", "stockpile", "charge beam", "curse", "roar", "whirlwind", "fake out", "cosmic power", "amnesia", "iron defense", "psybeam", "silver wind", "ancient power", "power gem", "psychic", "extrasensory", "signal beam", "bug buzz", "rapid spin", "spikes", "toxic spikes", "stealth rock", "calm mind", "bulk up", "dragon dance", "nasty plot", "double team", "wish", "covet", "amnesia", "nasty plot", "swords dance", "belly drum", "safeguard", "baton pass", "block", "lava plume", "sacred fire", "will-o-wisp", "horn drill", "guillotine", "fissure", "dragon rage", "perish song", "nightmare", "heal bell", "aromatherapy", "sheer cold", "psywave", "mind reader", "lock-on", "seismic toss", "night shade", "dig", "teleport", "toxic", "leech seed", "thief", "false swipe", "role play", "flash", "endeavor", "super fang", "mean look", "skill swap", "headbutt", "glare", "confuse ray", "flatter", "stun spore", "thunder wave", "swagger", "yawn", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
+
+	# Gen 5
+    ["shadowball", "brickbreak", "psychic", "payback", "shadowclaw", "echoedvoice", "x-scissor", "work up", "scald", "acrobatics", "barrier", "stockpile", "charge beam", "curse", "roar", "whirlwind", "fake out", "cosmic power", "amnesia", "iron defense", "psybeam", "silver wind", "ancient power", "power gem", "psychic", "extrasensory", "signal beam", "bug buzz", "rapid spin", "spikes", "toxic spikes", "stealth rock", "calm mind", "bulk up", "dragon dance", "nasty plot", "double team", "wish", "covet", "amnesia", "nasty plot", "swords dance", "belly drum", "safeguard", "baton pass", "block", "lava plume", "sacred fire", "will-o-wisp", "horn drill", "guillotine", "fissure", "dragon rage", "perish song", "nightmare", "heal bell", "aromatherapy", "sheer cold", "psywave", "mind reader", "lock-on", "seismic toss", "night shade", "dig", "teleport", "toxic", "leech seed", "thief", "false swipe", "role play", "flash", "endeavor", "super fang", "mean look", "skill swap", "headbutt", "glare", "confuse ray", "flatter", "stun spore", "thunder wave", "swagger", "yawn", "spore", "sleep powder", "sing", "lovely kiss", "hypnosis", "grass whistle"],
+
 ]
 
 def scrape_attackdex(gen):
@@ -81,7 +89,7 @@ def scrape_attackdex(gen):
         time.sleep(2)
 
 def main():
-    for g in range(1, 4+1):
+    for g in range(1, 5+1):
         print("Fetching gen {} moves:".format(g), flush=True)
         scrape_attackdex(g)
         print("", flush=True)

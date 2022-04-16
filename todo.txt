@@ -1,0 +1,2 @@
+Parse TM # for hm/tm split
+Parse Base Power for dmging/other

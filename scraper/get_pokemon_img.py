@@ -6,14 +6,16 @@ art_urls = [
     "https://www.serebii.net/pokearth/sprites/rb/{}.png",
     "https://www.serebii.net/pokearth/sprites/gold/{}.png",
     "https://www.serebii.net/pokearth/sprites/rs/{}.png",
-    "https://www.serebii.net/pokearth/sprites/dp/{}.png"
+    "https://www.serebii.net/pokearth/sprites/dp/{}.png",
+	"https://www.serebii.net/blackwhite/pokemon/{}.png"
 ]
 
 pokemon_count = [
     151,
     251,
     386,
-    493
+    493,
+	649
 ]
 
 def get_pokemon_art(gen):
@@ -48,5 +50,5 @@ def get_pokemon_art(gen):
         time.sleep(1)
 
 if __name__ == '__main__':
-    for gen in range(1, 4+1):
+    for gen in range(1, 5+1):
         get_pokemon_art(gen)
